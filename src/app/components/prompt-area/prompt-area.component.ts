@@ -1,11 +1,22 @@
 import { Component } from '@angular/core';
+import { PromptService } from '../../services/prompt.service';
 
 @Component({
   selector: 'app-prompt-area',
-  imports: [],
   templateUrl: './prompt-area.component.html',
-  styleUrl: './prompt-area.component.scss'
+  styleUrls: ['./prompt-area.component.css']
 })
 export class PromptAreaComponent {
+  fullPrompt: string = '';
 
+  constructor(private promptService: PromptService) {
+    this.promptService.prompts$.subscribe(prompts => {
+      this.fullPrompt = prompts.join(' ');
+    });
+  }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.fullPrompt);
+    alert('Copied to clipboard!');
+  }
 }
