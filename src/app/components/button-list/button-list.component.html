@@ -1,13 +1,14 @@
-<div class="button-list-container">
-    <div *ngFor="let button of buttons">
-      <button mat-button (click)="button.show = !button.show">{{ button.label }}</button>
-      <div *ngIf="button.show" class="dropdown-container">
-        <ul>
-          <li *ngFor="let prompt of button.prompts" (click)="addToPrompt(prompt)">
-            <button mat-button>{{ prompt }}</button>
-          </li>
-        </ul>
-      </div>
+<mat-accordion class="accordion-container">
+  <mat-expansion-panel *ngFor="let button of buttons">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ button.label }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="dropdown">
+      <button mat-button *ngFor="let prompt of button.prompts" (click)="addToPrompt(prompt)">
+        {{ prompt }}
+      </button>
     </div>
-  </div>
-  
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { PromptService } from '../../services/prompt-service';
 import { CommonModule } from '@angular/common'; 
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-button-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatExpansionModule],
   templateUrl: './button-list.component.html',
-  styleUrls: ['./button-list.component.css']
+  styleUrls: ['./button-list.component.scss']
 })
 export class ButtonListComponent {
   buttons = [
