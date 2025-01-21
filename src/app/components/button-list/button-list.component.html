@@ -1,5 +1,5 @@
-<mat-accordion class="accordion-container">
-  <mat-expansion-panel *ngFor="let button of buttons">
+<mat-accordion class="accordion-container" [multi]="false">
+  <mat-expansion-panel *ngFor="let button of buttons" >
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{ button.label }}

@@ -1,8 +1,13 @@
 ::ng-deep .accordion-container {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+  
+    /* Eliminar los espacios entre los paneles */
+    .mat-expansion-panel-spacing {
+      margin: 0 !important; /* Forzar margen a 0 */
+    }
   
     .mat-expansion-panel {
       flex: 0 1 auto;
@@ -10,50 +15,66 @@
       border: 1px solid #ddd !important;
       overflow: visible !important;
       box-shadow: none !important;
+      position: relative; /* Necesario para que el contenido flotante funcione */
     }
   
+    /* Evitar cambios de tamaño en el header */
     .mat-expansion-panel-header {
       background-color: #fefefe !important;
       border-radius: 16px !important;
       border: 1px solid #ddd !important;
       padding: 10px 20px !important;
       font-weight: bold !important;
-      transition: background-color 0.3s ease;
+      cursor: pointer;
+      height: 64px !important; /* Altura fija */
+      line-height: 1.5;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
   
       &:hover {
         background-color: #e3f2fd !important;
       }
     }
   
+    /* Asegurarse de que el header expandido no cambie de tamaño */
+    .mat-expansion-panel-header.mat-expanded {
+      height: 64px !important; /* Mantener altura fija */
+      background-color: #e3f2fd !important; /* Cambiar color al expandirse */
+    }
+  
+    /* Eliminar animaciones que afectan el tamaño */
+    .mat-expansion-panel.mat-expansion-panel-animations-enabled {
+      transition: none !important; /* Deshabilitar transiciones de Angular Material */
+    }
+  
+    /* Ajustar el comportamiento del contenido flotante */
     .mat-expansion-panel-content-wrapper {
-      position: absolute !important;
-      top: 100%;
+      position: absolute !important; /* Flotar contenido */
+      top: calc(100% + 5px); /* Justo debajo del botón principal */
       left: 0;
       z-index: 1000;
-      width: auto;
       background-color: #ffffff !important;
+      border-radius: 8px !important;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      width: max-content; /* Ajustar al contenido */
+      display: none !important; /* Ocultar por defecto */
+    }
+  
+    /* Mostrar el contenido cuando está expandido */
+    .mat-expansion-panel.mat-expanded .mat-expansion-panel-content-wrapper {
+      display: block !important;
     }
   
     .mat-expansion-panel-content {
       overflow: visible !important;
-      background-color: transparent !important;
+      padding: 0 !important;
     }
   
-    .mat-expansion-panel-body {
-      background-color: transparent !important;
-    }
-  
+    /* Estilo para los botones del dropdown */
     .dropdown {
       display: flex;
+      flex-direction: column; /* Botones alineados verticalmente */
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 10px;
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   
       button {
         background-color: #f8f9fa;
