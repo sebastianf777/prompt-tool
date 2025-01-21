@@ -1,7 +1,7 @@
-<div style="display: flex; gap: 10px;">
+<div class="button-list-container">
     <div *ngFor="let button of buttons">
       <button mat-button (click)="button.show = !button.show">{{ button.label }}</button>
-      <div *ngIf="button.show" style="position: absolute; background: white; border: 1px solid gray; padding: 10px;">
+      <div *ngIf="button.show" class="dropdown-container">
         <ul>
           <li *ngFor="let prompt of button.prompts" (click)="addToPrompt(prompt)">
             <button mat-button>{{ prompt }}</button>

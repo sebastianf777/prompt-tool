@@ -6,11 +6,7 @@ import { PromptAreaComponent } from './components/prompt-area/prompt-area.compon
   selector: 'app-root',
   standalone: true,
   imports: [ButtonListComponent, PromptAreaComponent],
-  template: `
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 20px;">
-      <app-button-list></app-button-list>
-      <app-prompt-area></app-prompt-area>
-    </div>
-  `
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {}
