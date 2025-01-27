@@ -1,5 +1,10 @@
-<div style="width: 100%; padding: 20px; border: 1px solid black; min-height: 100px;">
-    {{ fullPrompt }}
-  </div>
-  <button mat-raised-button color="primary" (click)="copyToClipboard()">Copy Prompt</button>
-  
+<div class="prompt-area">
+  <textarea 
+    (input)="onPromptChange($event)" 
+    [value]="fullPrompt" 
+    rows="5" 
+    placeholder="Write your prompt aaahere..."
+  ></textarea>
+</div>
+<button mat-raised-button color="primary" (click)="copyToClipboard()">Copy Prompt</button>
+
