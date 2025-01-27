@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { PromptService } from '../../services/prompt-service';
 import { CommonModule } from '@angular/common'; 
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -17,9 +17,27 @@ export class ButtonListComponent {
     { label: 'Style', prompts: ['Minimalist', 'Abstract', 'Retro', 'Modern'], show: false }
   ];
 
-  constructor(private promptService: PromptService) {}
+  constructor(private promptService: PromptService, private eRef: ElementRef) {}
 
-  addToPrompt(prompt: string) {
+  addToPrompt(prompt: string): void {
     this.promptService.addPrompt(prompt);
+  }
+
+  toggleDropdown(index: number): void {
+    // Toggle the clicked dropdown and close others
+    this.buttons.forEach((button, i) => {
+      button.show = i === index ? !button.show : false;
+    });
+  }
+
+  closeAllDropdowns(): void {
+    this.buttons.forEach(button => (button.show = false));
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event): void {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.closeAllDropdowns();
+    }
   }
 }
